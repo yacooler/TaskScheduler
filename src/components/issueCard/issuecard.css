@@ -1,7 +1,9 @@
 .issue-card-container{
     border: 1px solid;
+    border-color: gray;
     border-radius: 3px;
     padding: 1rem 1rem 0 1rem;
+    margin-bottom: 1rem;
 }
 
 .issue-card-red{

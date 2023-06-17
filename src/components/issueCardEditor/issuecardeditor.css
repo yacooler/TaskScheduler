@@ -1,0 +1,24 @@
+.issue-card-editor-container{
+    border: 1px solid;
+    border-color: gray;
+    border-radius: 3px;
+    padding: 1rem 1rem 0 1rem;
+    margin-bottom: 1rem;
+}
+.issue-card-editor-input-container{
+    display: flex;
+    justify-content:flex-start;
+    flex-direction: row;
+    gap: 1rem;
+}
+
+.issue-card-editor-input-and-button-container{
+    padding: 1rem 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.issue-card-editor-input-error{
+    background-color: lightpink;
+}

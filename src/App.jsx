@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import './App.css'
 import IssueCard from './components/issueCard/IssueCard'
+import IssueCardEditor from './components/issueCardEditor/IssueCardEditor';
 
 function App() {
 
@@ -36,6 +37,8 @@ function App() {
     setCardDB(cardDB.filter(c => c != cardToDelete))
   }
 
+  
+  
   const cards = cardDB.map(card => 
     <IssueCard
       key = {card.id}
@@ -54,6 +57,7 @@ function App() {
 
   return (
     <div>     
+      <IssueCardEditor addNewIssue={()=>{}}/>
       {cards}
     </div>
   )

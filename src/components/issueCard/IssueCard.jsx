@@ -8,13 +8,10 @@ export default function IssueCard({topic, maxValue, currentValue = 0, issueMakeS
     const progress = currentValue / maxValue;
     const cssColourClass = progress < 0.25 ? 'issue-card-red' : progress >= 0.75 ? 'issue-card-green' : 'issue-card-yellow';
     const cardClassName = ['issue-card-container', cssColourClass].join(' ')
-
-    if (maxValue >= currentValue){
-
-    }
+    
 
     function buttonMakeStepClickHandler(){
-        issueMakeStep(currentValue + 1);
+        if (currentValue < maxValue) issueMakeStep(currentValue + 1);
     }
 
     function buttonDeleteClickHandler(){
@@ -27,9 +24,10 @@ export default function IssueCard({topic, maxValue, currentValue = 0, issueMakeS
             <h1>{topic}</h1>
             <Progressbar currentValue={currentValue} maxValue={maxValue} /> 
             <div className='issue-card-buttons-container'>
-                <button type='button' onClick={buttonMakeStepClickHandler}>Сделать шаг</button>
+                <button type='button' onClick={buttonMakeStepClickHandler} hidden = {maxValue === currentValue}>Сделать шаг</button>
+                <span hidden = {!(maxValue === currentValue)}>Всё сделано</span>
                 <button type='button' onClick={buttonDeleteClickHandler}>Удалить задачу</button>
-            </div>
+            </div> 
         </div> 
     )
 }

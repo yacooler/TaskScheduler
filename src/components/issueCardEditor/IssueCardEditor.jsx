@@ -4,7 +4,8 @@ import PropTypes from 'prop-types';
 
 export default function IssueCardEditor({addNewIssue}){
 
-    let [isValidData, setIsValidData] = useState(true);
+    let [isValidTitle, setIsValidTitle] = useState(true);
+    let [isValidMaxValue, setIsValidMaxValue] = useState(true);
 
     const refTitle = useRef();
     const refMaxValue = useRef();
@@ -15,20 +16,25 @@ export default function IssueCardEditor({addNewIssue}){
         let maxValue = parseInt(refMaxValue.current.value);
 
         if (title.length === 0) {
-            console.log('tt' + title)
-            setIsValidData(false);
+            setIsValidTitle(false);
             return;
         }
 
         if (!Number.isInteger(maxValue)) {
-            console.log('mv' + maxValue)
-            setIsValidData(false);
+            setIsValidMaxValue(false);
             return;
         }
 
         addNewIssue(title, maxValue);
 
-        if (!isValidData) setIsValidData(true);
+        clearFields();
+    }
+
+    function clearFields(){
+        refTitle.current.value = ''
+        refMaxValue.current.value = ''
+        if (!isValidTitle) setIsValidTitle(true);
+        if (!isValidMaxValue) setIsValidMaxValue(true);
     }
 
     return (
@@ -38,8 +44,8 @@ export default function IssueCardEditor({addNewIssue}){
                 
                 <div className='issue-card-editor-input-and-button-container'>
                     <div className='issue-card-editor-input-container'>
-                        <input type='input' ref = {refTitle} className = {isValidData ? '' : 'issue-card-editor-input-error'} placeholder='Введите название задачи'></input>
-                        <input type='number' ref = {refMaxValue} className = {isValidData ? '' : 'issue-card-editor-input-error'} placeholder='Введите количество шагов'></input>
+                        <input type='input' ref = {refTitle} className = {isValidTitle ? '' : 'issue-card-editor-input-error'} placeholder='Введите название задачи'></input>
+                        <input type='number' ref = {refMaxValue} className = {isValidMaxValue ? '' : 'issue-card-editor-input-error'} placeholder='Введите количество шагов'></input>
                     </div>              
                     <button type='button' onClick={addNewIssueHandler}>Добавить задачу</button>
                 </div>
